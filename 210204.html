@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HAPPY BIRTHDAY WAN SYAIDATUL ZARA SOFEA</title>
+    <title>A DAY TO REMEMBER</title>
     <style>
         body {
             margin: 0;
@@ -33,7 +33,7 @@
             z-index: 10;
         }
         h2 {
-            font-family: 'Lavishly Yours', cursive;
+            font-family: 'Grey Qo', cursive;
             font-size: 4.5em;
             text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);
             margin-top: -20px;
@@ -65,8 +65,7 @@
             margin-top: 10px;
             font-weight: normal;
         }
-        #letter-link {
-            margin-top: 30px;
+        #letter-link { margin-top: 30px;
             width: 166px;
             height: 40px;
             display: none;
@@ -94,11 +93,12 @@
 
         /* Description Text Style */
         .birthday-description {
-            font-size: 1.2em;
+            font-family: 'Carattere', cursive;
+            font-size: 1.9em;
             margin-top: 10px;
             color: white;
             text-align: center;
-            font-weight: normal;
+            font-weight: lighter;
             line-height: 1.5;
             display: inline-block;
             max-width: 75%; /* Set the width to 75% of the screen */
@@ -200,6 +200,7 @@
         }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Grey+Qo&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Carattere&display=swap" rel="stylesheet">
 </head>
 <body>
     <h1>HAPPY BIRTHDAY</h1>
@@ -244,59 +245,33 @@
         </div>
     </div>
 
-    <a id="letter-link" href="#" onclick="checkPassword()">LETTER FOR SOFEA<br>- - - O P E N - - -</a>
+    <a id="letter-link" href="#" onclick="checkPassword()">LETTER FOR SOFEA<br>- - - O P E N - - -
+    </a>
 
     <script>
-        const birthDate = new Date("2004-02-21T00:00:00");
+             const birthDate = new Date("2004-02-21T00:00:00");
 
-        function updateCounter() {
-            const now = new Date();
-            let years = now.getFullYear() - birthDate.getFullYear();
-            let months = now.getMonth() - birthDate.getMonth();
-            let days = now.getDate() - birthDate.getDate();
-            let hours = now.getHours() - birthDate.getHours();
-            let minutes = now.getMinutes() - birthDate.getMinutes();
-            let seconds = now.getSeconds() - birthDate.getSeconds();
+function updateCounter() {
+    const now = new Date();
+    const diff = now - birthDate;
+    
+    const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
+    const months = Math.floor((diff % (1000 * 60 * 60 * 24 * 365.25)) / (1000 * 60 * 60 * 24 * 30.44));
+    const days = Math.floor((diff % (1000 * 60 * 60 * 24 * 30.44)) / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-            // Adjust seconds
-            if (seconds < 0) {
-                seconds += 60;
-                minutes--;
-            }
+    document.getElementById("year-num").innerText = years;
+    document.getElementById("month-num").innerText = months;
+    document.getElementById("day-num").innerText = days;
+    document.getElementById("hour-num").innerText = hours;
+    document.getElementById("minute-num").innerText = minutes;
+    document.getElementById("second-num").innerText = seconds;
+}
 
-            // Adjust minutes
-            if (minutes < 0) {
-                minutes += 60;
-                hours--;
-            }
-
-            // Adjust hours
-            if (hours < 0) {
-                hours += 24;
-                days--;
-            }
-
-            // Adjust days
-            if (days < 0) {
-                const daysInPrevMonth = new Date(now.getFullYear(), now.getMonth(), 0).getDate();
-                days += daysInPrevMonth;
-                months--;
-            }
-
-            // Adjust months
-            if (months < 0) {
-                months += 12;
-                years--;
-            }
-
-            // Update the displayed values
-            document.getElementById("year-num").innerText = years;
-            document.getElementById("month-num").innerText = months;
-            document.getElementById("day-num").innerText = days;
-            document.getElementById("hour-num").innerText = hours;
-            document.getElementById("minute-num").innerText = minutes;
-            document.getElementById("second-num").innerText = seconds;
-        }
+setInterval(updateCounter, 1000);
+updateCounter();
 
         function startConfetti() {
             const confettiContainer = document.createElement('div');
