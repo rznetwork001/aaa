@@ -37,6 +37,7 @@
             font-size: 4.5em;
             text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);
             margin-top: -20px;
+            margin-bottom: 10px;
             font-weight: normal;
             letter-spacing: 2px;
             z-index: 10;
@@ -65,10 +66,12 @@
             margin-top: 10px;
             font-weight: normal;
         }
-        #letter-link { margin-top: 30px;
+        #letter-link { margin: 20px auto;
+            margin-top: 5px;
+            position: relative;
             width: 166px;
             height: 40px;
-            display: none;
+            display: inline-block;
             justify-content: center;
             align-items: center;
             font-size: 0.93em;
@@ -79,7 +82,8 @@
             text-align: center;
             padding: 10px;
             border-radius: 16px;
-            transition: 1.5s ease;
+            transition: opacity 1.5s ease;
+            animation: heartbeat 1s ease-in-out infinite;
         }
         #letter-link:hover {
             filter: brightness(1.5);
@@ -115,9 +119,8 @@
             }
         }
         #seconds {
-            background: url('https://image.shutterstock.com/image-vector/heart-shape-background-illustration-design-260nw-1069831717.jpg') no-repeat center center;
-            background-size: cover;
             animation: heartbeat 1s ease-in-out infinite;
+            
         }
 
         /* Confetti styles */
@@ -206,6 +209,9 @@
     <h1>HAPPY BIRTHDAY</h1>
     <h2>Wan Syaidatul Zara Sofea</h2>
 
+    <a id="letter-link" href="#" onclick="checkPassword()">LETTER FOR SOFEA<br>- - - O P E N - - -
+    </a>
+
     <!-- Play Audio Button -->
     <button id="playAudioButton" onclick="playAudio()">FOR SOFEA, 21 February</button>
 
@@ -214,9 +220,9 @@
         Your browser does not support the audio element.
     </audio>
 
-    <div class="you-lived-text">21 FEBRUARY 2004</div>
+    <div class="you-lived-text">21 FEBRUARY 2004 - 08:14PM -</div>
     <div class="birthday-description">
-        On this special day, a little princess was born to her parents, a younger sister to her brother and sister, and an older sister to her younger sibling. Now, she has grown into a strong, kind, and caring woman, with a good heart, smart mind, and a beautiful soul.
+        On this special day, a little princess was born for her parents, a younger sister for her brother and sister, and an older sister for her younger sibling. Now, she has grown into a strong, kind, and caring woman, with a good heart, smart mind, and a beautiful soul.
     </div>
     <div class="counter">
         <div id="years" class="time-box">
@@ -244,9 +250,6 @@
             <div class="time-label">Seconds</div>
         </div>
     </div>
-
-    <a id="letter-link" href="#" onclick="checkPassword()">LETTER FOR SOFEA<br>- - - O P E N - - -
-    </a>
 
     <script>
              const birthDate = new Date("2004-02-21T00:00:00");
@@ -308,7 +311,14 @@ updateCounter();
             document.body.style.filter = "blur(0px)"; // Remove the blur effect when the audio plays
             }
 
-            document.getElementById("letter-link").style.display = "inline-block"; // Show the button
+            // Hide the button initially
+document.getElementById("letter-link").style.display = "none";
+
+// Show the button after 60 seconds (60000 milliseconds)
+setTimeout(() => {
+    document.getElementById("letter-link").style.display ="inline-block";
+}, 68000);
+ // Show the button
             
 
         function checkPassword() {
